@@ -1,0 +1,25 @@
+[font=Verdana][size=4][b]Description[/b][/size][/font]
+For people who don't like fishing. Simple instant fishing mod.
+
+[font=Verdana][size=4][b]Requirements[/b][/size][/font]
+[size=3]Unreal Engine Scripting System aka. [url=https://github.com/UE4SS-RE/RE-UE4SS]RE-UE4SS[/url][/size]
+
+[font=Verdana][size=4][b]Manual Installation[/b][/size][/font]
+[size=2]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
+1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version nummber}.zip [/b]
+2. Unzip the content of the zip archive into the following location: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
+[size=2]It should be at the location of the [b]AbioticFactor-Win64-Shipping.exe[/b] !
+For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
+3. Now use the [b]Manual Download[/b] button in [i]Files[/i] tab to download the mod as a zip file as well.
+4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\[/i]
+[size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i]
+Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\Mods\InstantFishing\
+[/i][/size]5. Done, you can change mod's hotkey, if you want (see below).
+
+[font=Verdana][size=4][b]How to use[/b][/size][/font]
+1. Craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
+2. Go fish
+3. ???
+4. A lot of fish
+
+[b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]

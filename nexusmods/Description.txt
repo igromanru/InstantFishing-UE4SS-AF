@@ -16,6 +16,17 @@ For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam
 Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\Mods\InstantFishing\
 [/i][/size]5. Done, you can change mod's hotkey, if you want (see below).
 
+[font=Verdana][size=4][b]Recommended UE4SS settings for better performance[/b][/size][/font]
+[size=2]If you experience lag spikes, I highly recommend to change this settings.[/size]
+1. Navigate to the game directory where you've installed the UE4SS: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
+[size=2]e.g. [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
+2. Open [b]UE4SS-settings.ini[/b] with any text editor.
+3. Find following entries and change them as following:
+[code]bUseUObjectArrayCache = false
+GuiConsoleEnabled = 0[/code]
+4. Save the file.
+[size=2]If you still experience performance issues, write a detailed comment what happens, your PC specs and which mods you use.[/size]
+
 [font=Verdana][size=4][b]How to use[/b][/size][/font]
 1. Craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
 2. Go fish

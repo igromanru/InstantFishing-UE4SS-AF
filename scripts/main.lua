@@ -7,71 +7,41 @@
 ------------------------------
 -- Don't change code below --
 ------------------------------
-local AFUtils = require("AFUtils.AFUtils")
+local ModName = "InstantFishing"
+local ModVersion = "1.1.0"
+local DebugMode = false
 
-ModName = "InstantFishing"
-ModVersion = "1.0.0"
-DebugMode = false
+local function ModInfoAsPrefix()
+    return "["..ModName.." v"..ModVersion.."] "
+end
 
-LogInfo("Starting mod initialization")
+print(ModInfoAsPrefix().."Starting mod initialization")
 
 local IsModEnabled = true
 
-local function TickMinigameHook(Context, DeltaTime)
-    local this = Context:get()
-    if IsModEnabled and this.ActiveFishSpeed > 0 and this.CurrentOwner and this.CurrentOwner:IsValid() then
-        LogDebug("[TickMinigame] called:")
-        LogDebug("ActiveRodTension: " .. this.ActiveRodTension)
-        LogDebug("NextDirectionChangeTime: " .. this.NextDirectionChangeTime)
-        LogDebug("NextCooldownTime: " .. this.NextCooldownTime)
-        LogDebug("FishCaptureProgress: " .. this.FishCaptureProgress)
-        LogDebug("FishCaptureDistance: " .. this.FishCaptureDistance)
-        LogDebug("FishCaptureStage: " .. this.FishCaptureStage)
-        LogDebug("ActiveFishSpeed: " .. this.ActiveFishSpeed)
-        LogDebug("TimeToStartMinigame: " .. this.TimeToStartMinigame)
-        LogDebug("HasActiveFish: " .. tostring(this.HasActiveFish))
-        LogDebug("ReelAnimTime: " .. this.ReelAnimTime)
-        LogDebug("Reeling: " .. tostring(this.Reeling))
-        LogDebug("HotspotActive: " .. tostring(this.HotspotActive))
-        LogDebug("LastTimeFishingEnded: " .. this.LastTimeFishingEnded)
-        LogDebug("CatchingJunk: " .. tostring(this.CatchingJunk))
-        LogDebug("JunkReward.RowName: " .. this.JunkReward.RowName:ToString())
-        LogDebug("FishReward.RowName: " .. this.FishReward.RowName:ToString())
-        LogDebug("FishReward.DataTablePath: " .. this.FishReward.DataTablePath:ToString())
-        LogDebug("RequiredCaptures: " .. this.RequiredCaptures)
-        LogDebug("TackleboxActive: " .. tostring(this.TackleboxActive))
-        LogDebug("LuckyHat: " .. tostring(this.LuckyHat))
-        LogDebug("OwnerLastKnownLevel: " .. this.OwnerLastKnownLevel)
-        
-        local myPlayer = AFUtils.GetMyPlayer()
-        -- Make sure that my player is the owner
-        if myPlayer and myPlayer:GetAddress() == this.CurrentOwner:GetAddress() then
-            if this.ActiveRodTension > 0 then
-                this:FishingSuccess()
-            end
-            this.TimeToStartMinigame = 10.0
-        end
-        LogDebug("------------------------------")
+local function StartFishingMinigameHook(Context)
+    local fishingRod = Context:get()
+
+    if IsModEnabled then
+        fishingRod:FishingSuccess()
     end
 end
 
-local IsTickMinigameHooked = false
-local function HookTickMinigame()
-    if not IsTickMinigameHooked then
-        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:TickMinigame", TickMinigameHook)
-        IsTickMinigameHooked = true
+local IsStartFishingMinigameHooked = false
+local function HookStartFishingMinigame()
+    if not IsStartFishingMinigameHooked then
+        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:StartFishingMinigame", StartFishingMinigameHook)
+        IsStartFishingMinigameHooked = true
     end
 end
 
 -- For hot reload
 if DebugMode then
-    HookTickMinigame()
+    HookStartFishingMinigame()
 end
 
 RegisterHook("/Script/Engine.PlayerController:ClientRestart", function(Context, NewPawn)
-    LogDebug("[ClientRestart] called:")
-    HookTickMinigame()
-    LogDebug("------------------------------")
+    HookStartFishingMinigame()
 end)
 
-LogInfo("Mod loaded successfully")
+print(ModInfoAsPrefix().."Mod loaded successfully")

@@ -6,7 +6,7 @@ For people who don't like fishing. Simple instant fishing mod.
 
 [font=Verdana][size=4][b]Manual Installation[/b][/size][/font]
 [size=2]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
-1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version nummber}.zip [/b]
+1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version nummber}.zip[/b] (e.g. UE4SS_v3.0.1.zip)
 2. Unzip the content of the zip archive into the following location: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
 [size=2]It should be at the location of the [b]AbioticFactor-Win64-Shipping.exe[/b] !
 For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
@@ -21,5 +21,10 @@ Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Bi
 2. Go fish
 3. ???
 4. A lot of fish
+
+[font=Verdana][size=4][b]Known Issues[/b][/size][/font]
+Current UE4SS version works well with the game, but it has of a problem that causes the game to crash when you exit it.
+It has nothing to do with the mod and it has no negative impact on the game or your save file, it's just a bit annoying.
+And you might want to delete crash dump ([b].dmp[/b]) files from time to time from your game directory.
 
 [b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]

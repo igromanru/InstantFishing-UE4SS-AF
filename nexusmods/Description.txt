@@ -33,6 +33,9 @@ GuiConsoleEnabled = 0[/code]
 3. ???
 4. A lot of fish
 
+[font=Verdana][size=4][b]Multiplayer[/b][/size][/font]
+The mod works as host but also as "guest" on another server.  
+
 [font=Verdana][size=4][b]Known Issues[/b][/size][/font]
 Current UE4SS version works well with the game, but it has of a problem that causes the game to crash when you exit it.
 It has nothing to do with the mod and it has no negative impact on the game or your save file, it's just a bit annoying.

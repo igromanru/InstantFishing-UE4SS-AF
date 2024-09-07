@@ -6,15 +6,20 @@ For people who don't like fishing. Simple instant fishing mod.
 
 [font=Verdana][size=4][b]Manual Installation[/b][/size][/font]
 [size=2]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
-1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version nummber}.zip[/b] (e.g. UE4SS_v3.0.1.zip)
+1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version number}.zip [/b] (e.g.  UE4SS_v3.0.1.zip)
 2. Unzip the content of the zip archive into the following location: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
-[size=2]It should be at the location of the [b]AbioticFactor-Win64-Shipping.exe[/b] !
-For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
+[size=2]It should be at the location of the [b]AbioticFactor-Win64-Shipping.exe[/b] ![/size]
+[size=2]For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
+[size=2]Make sure you don't create a new folder while extracting! If you do just move the content to the destination after.[/size]
 3. Now use the [b]Manual Download[/b] button in [i]Files[/i] tab to download the mod as a zip file as well.
 4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\[/i]
-[size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i]
-Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\Mods\InstantFishing\
-[/i][/size]5. Done, you can change mod's hotkey, if you want (see below).
+[size=2]Make sure you don't create a new folder while extracting! If you do just move the content to the destination after.[/size]
+[size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i][/size]
+[size=2]Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i][/size]
+5. Verify that you have installed the mod correctly.
+The mod directory should contain a [b]Scripts[/b] folder an an [b]enabled.txt[/b] file.
+[size=2][i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\Scripts\[/i]
+[i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\enabled.txt[/i][/size]
 
 [font=Verdana][size=4][b]Recommended UE4SS settings for better performance[/b][/size][/font]
 [size=2]If you experience lag spikes, I highly recommend to change this settings.[/size]
@@ -23,15 +28,16 @@ Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Bi
 2. Open [b]UE4SS-settings.ini[/b] with any text editor.
 3. Find following entries and change them as following:
 [code]bUseUObjectArrayCache = false
-GuiConsoleEnabled = 0[/code]
+GuiConsoleEnabled = 0
+EnableDumping = 0[/code]
 4. Save the file.
 [size=2]If you still experience performance issues, write a detailed comment what happens, your PC specs and which mods you use.[/size]
 
 [font=Verdana][size=4][b]How to use[/b][/size][/font]
-1. Craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
+1. Take or craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
 2. Go fish
 3. ???
-4. A lot of fish
+4. Lots of fish
 
 [font=Verdana][size=4][b]Multiplayer[/b][/size][/font]
 The mod works as host but also as "guest" on another server.  

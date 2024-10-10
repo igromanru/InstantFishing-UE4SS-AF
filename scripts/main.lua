@@ -8,7 +8,7 @@
 -- Don't change code below --
 ------------------------------
 local ModName = "InstantFishing"
-local ModVersion = "1.1.0"
+local ModVersion = "1.1.1"
 local DebugMode = false
 
 local function ModInfoAsPrefix()
@@ -30,7 +30,7 @@ end
 local IsStartFishingMinigameHooked = false
 local function HookStartFishingMinigame()
     if not IsStartFishingMinigameHooked then
-        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:StartFishingMinigame", StartFishingMinigameHook)
+        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
         IsStartFishingMinigameHooked = true
     end
 end

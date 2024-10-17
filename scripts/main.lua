@@ -8,14 +8,14 @@
 -- Don't change code below --
 ------------------------------
 local ModName = "InstantFishing"
-local ModVersion = "1.1.1"
+local ModVersion = "1.1.2"
 local DebugMode = false
 
 local function ModInfoAsPrefix()
     return "["..ModName.." v"..ModVersion.."] "
 end
 
-print(ModInfoAsPrefix().."Starting mod initialization")
+print(ModInfoAsPrefix().."Starting mod initialization\n")
 
 local IsModEnabled = true
 
@@ -44,4 +44,4 @@ RegisterHook("/Script/Engine.PlayerController:ClientRestart", function(Context, 
     HookStartFishingMinigame()
 end)
 
-print(ModInfoAsPrefix().."Mod loaded successfully")
+print(ModInfoAsPrefix().."Mod loaded successfully\n")

@@ -33,21 +33,11 @@ local function StartFishingMinigameHook(Context)
     end
 end
 
-local IsStartFishingMinigameHooked = false
-local function HookStartFishingMinigame()
-    if not IsStartFishingMinigameHooked then
-        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
-        IsStartFishingMinigameHooked = true
-    end
-end
-
--- For hot reload
-if DebugMode then
-    HookStartFishingMinigame()
-end
-
-RegisterHook("/Script/Engine.PlayerController:ClientRestart", function(Context, NewPawn)
-    HookStartFishingMinigame()
+ExecuteInGameThread(function()
+    print(ModInfoAsPrefix().."Initializing hooks\n")
+    LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
+    RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+    print(ModInfoAsPrefix().."Hooks initialized\n")
 end)
 
 print(ModInfoAsPrefix().."Mod loaded successfully\n")

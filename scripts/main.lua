@@ -22,11 +22,11 @@ local IsModEnabled = true
 local function StartFishingMinigameHook(Context)
     local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
 
-    if DebugMode then
-        print(ModInfoAsPrefix().."---- [Start Fishing Minigame] called ----\n")
-        print(ModInfoAsPrefix()..string.format("LuckyHat: %s\n", tostring(fishingRod.LuckyHat)))
-        print(ModInfoAsPrefix().."------------------------------\n")
-    end
+    -- if DebugMode then
+    --     print(ModInfoAsPrefix().."---- [Start Fishing Minigame] called ----\n")
+    --     print(ModInfoAsPrefix()..string.format("LuckyHat: %s\n", tostring(fishingRod.LuckyHat)))
+    --     print(ModInfoAsPrefix().."------------------------------\n")
+    -- end
     if IsModEnabled then
         -- fishingRod.LuckyHat = true
         fishingRod:FishingSuccess()

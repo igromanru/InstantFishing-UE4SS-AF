@@ -1,37 +1,24 @@
 [font=Verdana][size=4][b]Description[/b][/size][/font]
 For people who don't like fishing. Simple instant fishing mod.
+[size=2]Since v1.2.0 Infinite Bait feature can be enabled through a Lua variable, it's disabled by default.[/size]
+
+[b]Attention[/b]: The mod shouldn't affect what you catch, it gets calculated by the game as soon you cast the Rod.
 
 [font=Verdana][size=4][b]Requirements[/b][/size][/font]
-[size=3]Unreal Engine Scripting System aka. [url=https://github.com/UE4SS-RE/RE-UE4SS]RE-UE4SS[/url][/size]
+[size=3][url=https://www.nexusmods.com/abioticfactor/mods/35]UE4SS for Abiotic Factor[/url][/size]
 
 [font=Verdana][size=4][b]Manual Installation[/b][/size][/font]
-[size=2]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
-1. Download the latest version of RE-UE4SS from it's [url=https://github.com/UE4SS-RE/RE-UE4SS/releases]Release[/url] section. You need the [b]UE4SS_v{version number}.zip [/b] (e.g.  UE4SS_v3.0.1.zip)
-2. Unzip the content of the zip archive into the following location: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
-[size=2]It should be at the location of the [b]AbioticFactor-Win64-Shipping.exe[/b] ![/size]
-[size=2]For Steam users it might be something like this: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
+[size=1]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
+1. Follow the instruction on the [url=https://www.nexusmods.com/abioticfactor/mods/35]UE4SS for Abiotic Factor[/url] page to download and install latest UE4SS from there.
+2. After use the [b]Manual Download[/b] button in [i]Files[/i] tab of this mod to download the mod as a zip file.
+4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory: [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\[/i]
 [size=2]Make sure you don't create a new folder while extracting! If you do just move the content to the destination after.[/size]
-3. Now use the [b]Manual Download[/b] button in [i]Files[/i] tab to download the mod as a zip file as well.
-4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\[/i]
-[size=2]Make sure you don't create a new folder while extracting! If you do just move the content to the destination after.[/size]
-[size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i][/size]
-[size=2]Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\Mods\InstantFishing\[/i][/size]
+[size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\[/i][/size]
+[size=2]Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\[/i][/size]
 5. Verify that you have installed the mod correctly.
-The mod directory should contain a [b]Scripts[/b] folder an an [b]enabled.txt[/b] file.
-[size=2][i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\Scripts\[/i]
-[i](game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\enabled.txt[/i][/size]
-
-[font=Verdana][size=4][b]Recommended UE4SS settings for better performance[/b][/size][/font]
-[size=2]If you experience lag spikes, I highly recommend to change this settings.[/size]
-1. Navigate to the game directory where you've installed the UE4SS: [i](game root directory)\AbioticFactor\Binaries\Win64\[/i]
-[size=2]e.g. [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\[/i][/size]
-2. Open [b]UE4SS-settings.ini[/b] with any text editor.
-3. Find following entries and change them as following:
-[code]bUseUObjectArrayCache = false
-GuiConsoleEnabled = 0
-EnableDumping = 0[/code]
-4. Save the file.
-[size=2]If you still experience performance issues, write a detailed comment what happens, your PC specs and which mods you use.[/size]
+The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/b] file.
+[size=2][i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\Scripts\[/i]
+[i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\enabled.txt[/i][/size]
 
 [font=Verdana][size=4][b]How to use[/b][/size][/font]
 1. Take or craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
@@ -39,12 +26,37 @@ EnableDumping = 0[/code]
 3. ???
 4. Lots of fish
 
+[font=Verdana][size=4][b]Mod Configuration[/b][/size][/font]
+1. Navigate into mod's directory to find the [b]main.lua[/b] file.
+[size=2]It should be in: (game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\Scripts\[/size]
+2. Open the [b]main.lua[/b] with [b]Notepad[/b] or any other text editor.
+3. Here you can change following settings through Lua variables:
+[b]InfiniteBait[/b] - [size=2]Set to [b]true[/b] to avoid consuming the bait while fishing.[/size]
+Example:
+[code]---------- Configurations ----------
+InfiniteBait = true
+-------------------------------------[/code]
+4. Don't forget to save the file. You will also have to reapply your changes after each mod update.
+
+
 [font=Verdana][size=4][b]Multiplayer[/b][/size][/font]
-The mod works as host but also as "guest" on another server.  
+The mod always works, even if you join other servers.
 
-[font=Verdana][size=4][b]Known Issues[/b][/size][/font]
-Current UE4SS version works well with the game, but it has of a problem that causes the game to crash when you exit it.
-It has nothing to do with the mod and it has no negative impact on the game or your save file, it's just a bit annoying.
-And you might want to delete crash dump ([b].dmp[/b]) files from time to time from your game directory.
+[font=Verdana][size=4][b]My AF Mods[/b][/size][/font]
+Check out my other Abiotic Factor mods.
+[list]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/28]Cheat Console Commands[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/33]Stack Manager[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/20]Duplicate Items[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/22]Unlimited Power (Gear - Held Item - Batteries)[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/31]Jager Corpse Remover[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/41]Infinite Leyak Containment[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/42]Customization Unlocker[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/50]Always Outline[/url]
+[/list]
+[b][url=https://github.com/igromanru/InfiniteLeyakContainment-UE4SS-AF]GitHub Page[/url][/b]
 
-[b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]
+[font=Arial][size=4]Highest form of appreciation[/size][/font]
+[size=2]If you like my work and feel generous, you can support me.[/size]
+[url=https://ko-fi.com/igromanru][img]https://i.imgur.com/rGcPxK8.png[/img][/url]
+[url=https://buymeacoffee.com/igromanru][img]https://i.imgur.com/JG0mNZg.png[/img][/url]

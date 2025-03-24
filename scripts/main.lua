@@ -22,6 +22,18 @@ end
 
 print(ModInfoAsPrefix().."Starting mod initialization\n")
 
+--------- Call order ---------
+---
+-- 1. OnRep_ActiveFishingLocation
+-- 2. Local_DetermineReward
+-- 3. Start Fishing Minigame
+--- After catching a fish ---
+-- 4. Request_FishingReward
+-- 5. OnRep_ActiveFishingLocation
+-- 6. EndFishingMinigame
+-- 7. FishingSuccess
+------------------------------
+
 local function StartFishingMinigameHook(Context)
     local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
 

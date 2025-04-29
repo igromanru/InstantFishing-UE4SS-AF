@@ -5,22 +5,29 @@
 ]]
 
 ---------- Configurations ----------
+-- Enable mod from the start
+ModEnabled = true
+-- Set to true to disable the bait usage
 InfiniteBait = false
--------------------------------------
+-------------- Hotkeys -------------
+-- Possible keys: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md
+-- See ModifierKey: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md
+-- ModifierKeys can be combined. e.g.: {ModifierKey.CONTROL, ModifierKey.ALT} = CTRL + ALT + Q
+-- Set to `nil` to disable hotkey.
+ToggleKey = Key.F5
+ToggleKeyModifiers = {}
+------------------------------------
 
 ------------------------------
 -- Don't change code below --
 ------------------------------
-local ModName = "InstantFishing"
-local ModVersion = "1.2.0"
-local DebugMode = true
-local IsModEnabled = true
+local AFUtils = require("AFUtils.AFUtils")
 
-local function ModInfoAsPrefix()
-    return "["..ModName.." v"..ModVersion.."] "
-end
+ModName = "InstantFishing"
+ModVersion = "1.3.0"
+DebugMode = true
 
-print(ModInfoAsPrefix().."Starting mod initialization\n")
+LogInfo("Starting mod initialization")
 
 --------- Call order ---------
 ---
@@ -43,7 +50,7 @@ local function StartFishingMinigameHook(Context)
     --     print(ModInfoAsPrefix()..string.format("LuckyHat: %s\n", tostring(fishingRod.LuckyHat)))
     --     print(ModInfoAsPrefix().."------------------------------\n")
     -- end
-    if IsModEnabled then
+    if ModEnabled then
         if not InfiniteBait then
             fishingRod:Request_TriggerBaitUsage()
         end
@@ -52,10 +59,33 @@ local function StartFishingMinigameHook(Context)
 end
 
 ExecuteInGameThread(function()
-    print(ModInfoAsPrefix().."Initializing hooks\n")
+    LogInfo("Initializing hooks")
     LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
     RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
-    print(ModInfoAsPrefix().."Hooks initialized\n")
+    LogInfo("Hooks initialized")
 end)
 
-print(ModInfoAsPrefix().."Mod loaded successfully\n")
+if ToggleKey and ToggleKeyModifiers then
+    local function SetModState(Enable)
+        ExecuteInGameThread(function()
+            Enable = Enable or false
+            ModEnabled = Enable
+            local state = "Disabled"
+            local warningColor =  AFUtils.CriticalityLevels.Red
+            if ModEnabled then
+                state = "Enabled"
+                warningColor =  AFUtils.CriticalityLevels.Green
+            end
+            local stateMessage = "Instant Fishing: " .. state
+            LogInfo(stateMessage)
+            AFUtils.ModDisplayTextChatMessage(stateMessage)
+            AFUtils.ClientDisplayWarningMessage(stateMessage, warningColor)
+        end)
+    end
+    
+    RegisterKeyBind(ToggleKey, ToggleKeyModifiers, function()
+        SetModState(not ModEnabled)
+    end)
+end
+
+LogInfo("Mod loaded successfully")

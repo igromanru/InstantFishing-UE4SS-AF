@@ -1,6 +1,7 @@
 [font=Verdana][size=4][b]Description[/b][/size][/font]
 For people who don't like fishing. Simple instant fishing mod.
-[size=2]Since v1.2.0 Infinite Bait feature can be enabled through a Lua variable, it's disabled by default.[/size]
+[size=2]Since v1.2.0 Infinite Bait feature can be enabled through a Lua variable, it's disabled by default.
+Since v1.3.0 the mod can be disabled at the start and a hotkey can be assigned to toggle it on/off.[/size]
 
 [b]Attention[/b]: The mod shouldn't affect what you catch, it gets calculated by the game as soon you cast the Rod.
 
@@ -31,10 +32,16 @@ The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/
 [size=2]It should be in: (game root directory)\AbioticFactor\Binaries\Win64\Mods\InstantFishing\Scripts\[/size]
 2. Open the [b]main.lua[/b] with [b]Notepad[/b] or any other text editor.
 3. Here you can change following settings through Lua variables:
+[b]ModEnabled[/b] - [size=2]Set to [b]false[/b] to start the game with the mod disabled.[/size]
 [b]InfiniteBait[/b] - [size=2]Set to [b]true[/b] to avoid consuming the bait while fishing.[/size]
-Example:
+[b]ToggleKey[/b] and [b]ToggleKeyModifiers[/b] can be used to assign a hotkey to toggle the mod. ([url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md]Key[/url] docs, [url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md]ModifierKey[/url] docs)
+[size=3]Example:[/size]
+[size=2]It will disable the mod at the start, enable infinite bait and set the toggle hotkey to F5.[/size]
 [code]---------- Configurations ----------
+ModEnabled = false
 InfiniteBait = true
+ToggleKey = Key.F5
+ToggleKeyModifiers = {}
 -------------------------------------[/code]
 4. Don't forget to save the file. You will also have to reapply your changes after each mod update.
 
@@ -54,7 +61,7 @@ Check out my other Abiotic Factor mods.
 [*][url=https://www.nexusmods.com/abioticfactor/mods/42]Customization Unlocker[/url]
 [*][url=https://www.nexusmods.com/abioticfactor/mods/50]Always Outline[/url]
 [/list]
-[b][url=https://github.com/igromanru/InfiniteLeyakContainment-UE4SS-AF]GitHub Page[/url][/b]
+[b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]
 
 [font=Arial][size=4]Highest form of appreciation[/size][/font]
 [size=2]If you like my work and feel generous, you can support me.[/size]

@@ -14,7 +14,7 @@ InfiniteBait = false
 -- See ModifierKey: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md
 -- ModifierKeys can be combined. e.g.: {ModifierKey.CONTROL, ModifierKey.ALT} = CTRL + ALT + Q
 -- Set to `nil` to disable hotkey.
-ToggleKey = Key.F5
+ToggleKey = nil
 ToggleKeyModifiers = {}
 ------------------------------------
 

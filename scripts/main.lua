@@ -24,7 +24,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.3.0"
+ModVersion = "1.3.1"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -78,7 +78,7 @@ if ToggleKey and ToggleKeyModifiers then
             end
             local stateMessage = "Instant Fishing: " .. state
             LogInfo(stateMessage)
-            AFUtils.ModDisplayTextChatMessage(stateMessage)
+            -- AFUtils.ModDisplayTextChatMessage(stateMessage)
             AFUtils.ClientDisplayWarningMessage(stateMessage, warningColor)
         end)
     end

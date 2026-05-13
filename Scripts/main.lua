@@ -24,7 +24,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.3.1"
+ModVersion = "1.3.2"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -58,11 +58,13 @@ local function StartFishingMinigameHook(Context)
     end
 end
 
-ExecuteInGameThread(function()
-    LogInfo("Initializing hooks")
-    LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
-    RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
-    LogInfo("Hooks initialized")
+ExecuteWithDelay(10000, function()
+    ExecuteInGameThread(function()
+        LogInfo("Initializing hooks")
+        LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
+        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+        LogInfo("Hooks initialized")
+    end)
 end)
 
 if ToggleKey and ToggleKeyModifiers then

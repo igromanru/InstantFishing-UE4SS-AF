@@ -24,7 +24,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.3.2"
+ModVersion = "1.3.3"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -42,7 +42,7 @@ LogInfo("Starting mod initialization")
 ------------------------------
 
 local function StartFishingMinigameHook(Context)
-    local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
+    -- local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
 
     -- if DebugMode then
     --     print(ModInfoAsPrefix().."---- [Start Fishing Minigame] called ----\n")
@@ -51,10 +51,15 @@ local function StartFishingMinigameHook(Context)
     --     print(ModInfoAsPrefix().."------------------------------\n")
     -- end
     if ModEnabled then
-        if not InfiniteBait then
-            fishingRod:Request_TriggerBaitUsage()
-        end
-        fishingRod:FishingSuccess()
+        ExecuteInGameThread(function()
+            local fishingRod = AFUtils.GetCurrentFishingRod()
+            if fishingRod then
+                if not InfiniteBait then
+                    fishingRod:Request_TriggerBaitUsage()
+                end
+                fishingRod:FishingSuccess()
+            end
+        end)
     end
 end
 
@@ -73,10 +78,10 @@ if ToggleKey and ToggleKeyModifiers then
             Enable = Enable or false
             ModEnabled = Enable
             local state = "Disabled"
-            local warningColor =  AFUtils.CriticalityLevels.Red
+            local warningColor = AFUtils.CriticalityLevels.Red
             if ModEnabled then
                 state = "Enabled"
-                warningColor =  AFUtils.CriticalityLevels.Green
+                warningColor = AFUtils.CriticalityLevels.Green
             end
             local stateMessage = "Instant Fishing: " .. state
             LogInfo(stateMessage)
@@ -84,7 +89,7 @@ if ToggleKey and ToggleKeyModifiers then
             AFUtils.ClientDisplayWarningMessage(stateMessage, warningColor)
         end)
     end
-    
+
     RegisterKeyBind(ToggleKey, ToggleKeyModifiers, function()
         SetModState(not ModEnabled)
     end)

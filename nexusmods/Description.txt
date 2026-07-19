@@ -1,7 +1,8 @@
 [font=Verdana][size=4][b]Description[/b][/size][/font]
 For people who don't like fishing. Simple instant fishing mod.
 [size=2]Since v1.2.0 Infinite Bait feature can be enabled through a Lua variable, it's disabled by default.
-Since v1.3.0 the mod can be disabled at the start and a hotkey can be assigned to toggle it on/off.[/size]
+Since v1.3.0 the mod can be disabled at the start and a hotkey can be assigned to toggle it on/off.
+Since v1.4.0 you can set a delay in milliseconds, how long the mod should wait before pulling out the rod.[/size]
 
 [b]Attention[/b]: The mod shouldn't affect what you catch, it gets calculated by the game as soon you cast the Rod.
 
@@ -9,17 +10,23 @@ Since v1.3.0 the mod can be disabled at the start and a hotkey can be assigned t
 [size=3][url=https://www.nexusmods.com/abioticfactor/mods/35]UE4SS for Abiotic Factor[/url][/size]
 
 [font=Verdana][size=4][b]Manual Installation[/b][/size][/font]
-[size=1]As for now Vortex doesn't support the game, so you have to install the mod manually.[/size]
 1. Follow the instruction on the [url=https://www.nexusmods.com/abioticfactor/mods/35]UE4SS for Abiotic Factor[/url] page to download and install latest UE4SS from there.
-2. After use the [b]Manual Download[/b] button in [i]Files[/i] tab of this mod to download the mod as a zip file.
-4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory: [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\[/i]
-[size=2]Make sure you don't create a new folder while extracting! If you do just move the content to the destination after.[/size]
+2. Then use the [b]Manual Download[/b] button in [i]Files[/i] tab of this mod to download the mod as a zip file.
+4. Unzip/extract the content of mod's zip ([b]InstantFishing[/b] folder) into the directory:
+[b]Steam:[/b] [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\[/i]
+[b]XboxGames:[/b] [i](game root directory)\Abiotic Factor\Content\AbioticFactor\Binaries\WinGDK\ue4ss\Mods\[/i]
+[size=2]Make sure you don't create a new folder while extracting! If you do, just move the content to the destination after.[/size]
 [size=2]Whole mod path should be like this: [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\[/i][/size]
 [size=2]Steam example: [i]C:\Program Files (x86)\Steam\steamapps\common\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\[/i][/size]
+[size=2]XboxGames example: [i]C:\XboxGames\Abiotic Factor\Content\AbioticFactor\Binaries\WinGDK\ue4ss\Mods\InstantFishing\[/i][/size]
 5. Verify that you have installed the mod correctly.
 The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/b] file.
+[b]Steam example:[/b]
 [size=2][i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\Scripts\[/i]
 [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss\Mods\InstantFishing\enabled.txt[/i][/size]
+[b]XboxGames example:[/b]
+[size=2][i](game root directory)\Abiotic Factor\Content\AbioticFactor\Binaries\WinGDK\ue4ss\Mods\InstantFishing\Scripts\[/i]
+[i](game root directory)\Abiotic Factor\Content\AbioticFactor\Binaries\WinGDK\ue4ss\Mods\InstantFishing\enabled.txt[/i][/size]
 
 [font=Verdana][size=4][b]How to use[/b][/size][/font]
 1. Take or craft a [url=https://abioticfactor.wiki.gg/wiki/Fishing_Rod]Fishing Rod[/url]
@@ -34,36 +41,46 @@ The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/
 3. Here you can change following settings through Lua variables:
 [b]ModEnabled[/b] - [size=2]Set to [b]false[/b] to start the game with the mod disabled.[/size]
 [b]InfiniteBait[/b] - [size=2]Set to [b]true[/b] to avoid consuming the bait while fishing.[/size]
+[b]PullingOutDelay[/b] - [size=2]Set a numeric value for how long the mod should wait after you've cast the rod before pulling it out. (Time in milliseconds. 1000 milliseconds = 1 second)[/size]
 [b]ToggleKey[/b] and [b]ToggleKeyModifiers[/b] can be used to assign a hotkey to toggle the mod. ([url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md]Key[/url] docs, [url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md]ModifierKey[/url] docs)
 [size=3]Example:[/size]
 [size=2]It will disable the mod at the start, enable infinite bait and set the toggle hotkey to F5.[/size]
 [code]---------- Configurations ----------
 ModEnabled = false
 InfiniteBait = true
+PullingOutDelay = 0
 ToggleKey = Key.F5
 ToggleKeyModifiers = {}
 -------------------------------------[/code]
+
 4. Don't forget to save the file. You will also have to reapply your changes after each mod update.
 
 
 [font=Verdana][size=4][b]Multiplayer[/b][/size][/font]
 The mod always works, even if you join other servers.
 
+[font=Verdana][size=4][b]Bug/Issue Reports[/b][/size][/font]
+If you have followed the installation instructions above and are 100% sure that you have done everything correctly, but you are still having problems with the mod, please provide following information if you wish to report an issue.
+[list=1]
+[*]Your game version and Platform (Steam/GoG etc.)[/*]
+[*]Which mod version are you using[/*]
+[*]The content of [b]UE4SS.log[/b] file.[/*]
+[/list]
+The log file is located in the [b]ue4ss[/b] directory.
+Steam Path: [i](game root directory)\AbioticFactor\Binaries\Win64\ue4ss[/i]
+Xbox Path: [i](game root directory)\AbioticFactor\Binaries\WinGDK\ue4ss[/i]
+The easiest way to share the content of the log file is to upload it to a site like: [url=https://pastebin.com/]pastebin.com[/url]
+
 [font=Verdana][size=4][b]My AF Mods[/b][/size][/font]
 Check out my other Abiotic Factor mods.
 [list]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/28]Cheat Console Commands[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/33]Stack Manager[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/20]Duplicate Items[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/22]Unlimited Power (Gear - Held Item - Batteries)[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/31]Jager Corpse Remover[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/41]Infinite Leyak Containment[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/42]Customization Unlocker[/url]
-[*][url=https://www.nexusmods.com/abioticfactor/mods/50]Always Outline[/url]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/28]Cheat Console Commands[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/33]Stack Manager[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/20]Duplicate Items[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/22]Unlimited Power (Gear - Held Item - Batteries)[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/41]Infinite Leyak Containment[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/42]Customization Unlocker[/url][/*]
+[*][url=https://www.nexusmods.com/abioticfactor/mods/50]Always Outline[/url][/*]
 [/list]
-[b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]
 
-[font=Arial][size=4]Highest form of appreciation[/size][/font]
-[size=2]If you like my work and feel generous, you can support me.[/size]
-[url=https://ko-fi.com/igromanru][img]https://i.imgur.com/rGcPxK8.png[/img][/url]
-[url=https://buymeacoffee.com/igromanru][img]https://i.imgur.com/JG0mNZg.png[/img][/url]
+[b][url=https://github.com/igromanru/InstantFishing-UE4SS-AF]GitHub Page[/url][/b]

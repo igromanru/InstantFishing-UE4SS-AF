@@ -10,7 +10,7 @@ ModEnabled = true
 -- Set to true to disable the bait usage
 InfiniteBait = false
 -- Set delay in milliseconds (1 sec = 1000 milliseconds)
-PullingOutDelay = 2000
+PullingOutDelay = 0
 -------------- Hotkeys -------------
 -- Possible keys: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md
 -- See ModifierKey: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md

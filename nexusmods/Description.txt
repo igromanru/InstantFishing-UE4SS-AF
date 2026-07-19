@@ -58,6 +58,7 @@ ToggleKeyModifiers = {}
 
 [font=Verdana][size=4][b]Multiplayer[/b][/size][/font]
 The mod always works, even if you join other servers.
+Don't install the mod on a dedicated server, it has to be installed for each player individually!
 
 [font=Verdana][size=4][b]Bug/Issue Reports[/b][/size][/font]
 If you have followed the installation instructions above and are 100% sure that you have done everything correctly, but you are still having problems with the mod, please provide following information if you wish to report an issue.

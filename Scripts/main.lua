@@ -26,7 +26,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.4.0"
+ModVersion = "1.4.1"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -45,6 +45,7 @@ LogInfo("Starting mod initialization")
 
 if not PullingOutDelay or PullingOutDelay < 0 then
     PullingOutDelay = 0
+    LogWarn("PullingOutDelay set to an invalid value! Reset it back to 0.")
 end
 
 local function StartFishingMinigameHook(Context)
@@ -71,14 +72,18 @@ local function StartFishingMinigameHook(Context)
     end
 end
 
-ExecuteWithDelay(10000, function()
-    ExecuteInGameThread(function()
-        LogInfo("Initializing hooks")
-        LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
-        RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
-        LogInfo("Hooks initialized")
+if AFUtils.IsDedicatedServer() then
+    LogError("Doesn't work on a dedicated server! The mod is disabled.")
+else
+    ExecuteWithDelay(10000, function()
+        ExecuteInGameThread(function()
+            LogInfo("Initializing hooks")
+            LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
+            RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+            LogInfo("Hooks initialized")
+        end)
     end)
-end)
+end
 
 if ToggleKey and ToggleKeyModifiers then
     local function SetModState(Enable)

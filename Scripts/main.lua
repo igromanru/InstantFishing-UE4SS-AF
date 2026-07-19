@@ -9,6 +9,8 @@
 ModEnabled = true
 -- Set to true to disable the bait usage
 InfiniteBait = false
+-- Set delay in milliseconds (1 sec = 1000 milliseconds)
+PullingOutDelay = 2000
 -------------- Hotkeys -------------
 -- Possible keys: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md
 -- See ModifierKey: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md
@@ -24,7 +26,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.3.3"
+ModVersion = "1.4.0"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -41,6 +43,10 @@ LogInfo("Starting mod initialization")
 -- 7. FishingSuccess
 ------------------------------
 
+if not PullingOutDelay or PullingOutDelay < 0 then
+    PullingOutDelay = 0
+end
+
 local function StartFishingMinigameHook(Context)
     -- local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
 
@@ -51,14 +57,16 @@ local function StartFishingMinigameHook(Context)
     --     print(ModInfoAsPrefix().."------------------------------\n")
     -- end
     if ModEnabled then
-        ExecuteInGameThread(function()
-            local fishingRod = AFUtils.GetCurrentFishingRod()
-            if fishingRod then
-                if not InfiniteBait then
-                    fishingRod:Request_TriggerBaitUsage()
+        ExecuteWithDelay(PullingOutDelay, function()
+            ExecuteInGameThread(function()
+                local fishingRod = AFUtils.GetCurrentFishingRod()
+                if fishingRod then
+                    if not InfiniteBait then
+                        fishingRod:Request_TriggerBaitUsage()
+                    end
+                    fishingRod:FishingSuccess()
                 end
-                fishingRod:FishingSuccess()
-            end
+            end)
         end)
     end
 end

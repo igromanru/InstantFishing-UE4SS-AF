@@ -7,10 +7,12 @@
 ---------- Configurations ----------
 -- Enable mod from the start
 ModEnabled = true
--- Set to true to disable the bait usage
+-- Set to `true` to disable the bait usage
 InfiniteBait = false
 -- Set delay in milliseconds (1 sec = 1000 milliseconds)
 PullingOutDelay = 0
+-- Set to `true` to wait until the fish bites
+WaitForFish = false
 -------------- Hotkeys -------------
 -- Possible keys: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md
 -- See ModifierKey: https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md
@@ -26,7 +28,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.4.1"
+ModVersion = "1.5.0"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -48,15 +50,7 @@ if not PullingOutDelay or PullingOutDelay < 0 then
     LogWarn("PullingOutDelay set to an invalid value! Reset it back to 0.")
 end
 
-local function StartFishingMinigameHook(Context)
-    -- local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
-
-    -- if DebugMode then
-    --     print(ModInfoAsPrefix().."---- [Start Fishing Minigame] called ----\n")
-    --     print(ModInfoAsPrefix()..string.format("CatchingJunk: %s\n", tostring(fishingRod.CatchingJunk)))
-    --     print(ModInfoAsPrefix()..string.format("LuckyHat: %s\n", tostring(fishingRod.LuckyHat)))
-    --     print(ModInfoAsPrefix().."------------------------------\n")
-    -- end
+local function FinishFishing()
     if ModEnabled then
         ExecuteWithDelay(PullingOutDelay, function()
             ExecuteInGameThread(function()
@@ -72,6 +66,24 @@ local function StartFishingMinigameHook(Context)
     end
 end
 
+local function ChooseNewDirectionHook(Context, AngleOnly)
+    -- local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
+    -- local angleOnly = AngleOnly:get() ---@type boolean
+    FinishFishing()
+end
+
+local function StartFishingMinigameHook(Context)
+    -- local fishingRod = Context:get() ---@type AWeapon_FishingRod_C
+
+    -- if DebugMode then
+    --     print(ModInfoAsPrefix().."---- [Start Fishing Minigame] called ----\n")
+    --     print(ModInfoAsPrefix()..string.format("CatchingJunk: %s\n", tostring(fishingRod.CatchingJunk)))
+    --     print(ModInfoAsPrefix()..string.format("LuckyHat: %s\n", tostring(fishingRod.LuckyHat)))
+    --     print(ModInfoAsPrefix().."------------------------------\n")
+    -- end
+    FinishFishing()
+end
+
 if AFUtils.IsDedicatedServer() then
     LogError("Doesn't work on a dedicated server! The mod is disabled.")
 else
@@ -79,7 +91,11 @@ else
         ExecuteInGameThread(function()
             LogInfo("Initializing hooks")
             LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
-            RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+            if WaitForFish then
+                RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:ChooseNewDirection", ChooseNewDirectionHook)
+            else
+                RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+            end
             LogInfo("Hooks initialized")
         end)
     end)

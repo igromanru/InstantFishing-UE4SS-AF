@@ -38,11 +38,12 @@ LogInfo("Starting mod initialization")
 -- 1. OnRep_ActiveFishingLocation
 -- 2. Local_DetermineReward
 -- 3. Start Fishing Minigame
+-- 4. ChooseNewDirection (each time the fish changes the pull direction)
 --- After catching a fish ---
--- 4. Request_FishingReward
--- 5. OnRep_ActiveFishingLocation
--- 6. EndFishingMinigame
--- 7. FishingSuccess
+-- 5. Request_FishingReward
+-- 6. OnRep_ActiveFishingLocation
+-- 7. EndFishingMinigame
+-- 8. FishingSuccess
 ------------------------------
 
 if not PullingOutDelay or PullingOutDelay < 0 then

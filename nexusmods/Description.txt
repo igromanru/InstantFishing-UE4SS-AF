@@ -3,6 +3,7 @@ For people who don't like fishing. Simple instant fishing mod.
 [size=2]Since v1.2.0 Infinite Bait feature can be enabled through a Lua variable, it's disabled by default.
 Since v1.3.0 the mod can be disabled at the start and a hotkey can be assigned to toggle it on/off.
 Since v1.4.0 you can set a delay in milliseconds, how long the mod should wait before pulling out the rod.[/size]
+[size=2]Since v1.5.0 you can enable a setting for the mod to wait until a fish bites.[/size]
 
 [b]Attention[/b]: The mod shouldn't affect what you catch, it gets calculated by the game as soon you cast the Rod.
 
@@ -42,6 +43,7 @@ The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/
 [b]ModEnabled[/b] - [size=2]Set to [b]false[/b] to start the game with the mod disabled.[/size]
 [b]InfiniteBait[/b] - [size=2]Set to [b]true[/b] to avoid consuming the bait while fishing.[/size]
 [b]PullingOutDelay[/b] - [size=2]Set a numeric value for how long the mod should wait after you've cast the rod before pulling it out. (Time in milliseconds. 1000 milliseconds = 1 second)[/size]
+[b]WaitForFish[/b] - [size=2]Set to [b]true[/b] to wait until a fish bites.[/size]
 [b]ToggleKey[/b] and [b]ToggleKeyModifiers[/b] can be used to assign a hotkey to toggle the mod. ([url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/key.md]Key[/url] docs, [url=https://github.com/UE4SS-RE/RE-UE4SS/blob/main/docs/lua-api/table-definitions/modifierkey.md]ModifierKey[/url] docs)
 [size=3]Example:[/size]
 [size=2]It will disable the mod at the start, enable infinite bait and set the toggle hotkey to F5.[/size]
@@ -49,6 +51,7 @@ The mod directory should contain a [b]Scripts[/b] folder and an [b]enabled.txt[/
 ModEnabled = false
 InfiniteBait = true
 PullingOutDelay = 0
+WaitForFish = false
 ToggleKey = Key.F5
 ToggleKeyModifiers = {}
 -------------------------------------[/code]

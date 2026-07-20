@@ -28,7 +28,7 @@ ToggleKeyModifiers = {}
 local AFUtils = require("AFUtils.AFUtils")
 
 ModName = "InstantFishing"
-ModVersion = "1.5.0"
+ModVersion = "1.5.1"
 DebugMode = true
 
 LogInfo("Starting mod initialization")
@@ -46,7 +46,7 @@ LogInfo("Starting mod initialization")
 -- 8. FishingSuccess
 ------------------------------
 
-if not PullingOutDelay or PullingOutDelay < 0 then
+if not PullingOutDelay or type(PullingOutDelay) ~= "number" or PullingOutDelay < 0 then
     PullingOutDelay = 0
     LogWarn("PullingOutDelay set to an invalid value! Reset it back to 0.")
 end
@@ -102,11 +102,10 @@ else
     end)
 end
 
-if ToggleKey and ToggleKeyModifiers then
+if ToggleKey and type(ToggleKeyModifiers) == "table" and #ToggleKeyModifiers > 0 then
     local function SetModState(Enable)
         ExecuteInGameThread(function()
-            Enable = Enable or false
-            ModEnabled = Enable
+            ModEnabled = Enable or false
             local state = "Disabled"
             local warningColor = AFUtils.CriticalityLevels.Red
             if ModEnabled then

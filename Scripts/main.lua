@@ -88,40 +88,40 @@ end
 if AFUtils.IsDedicatedServer() then
     LogError("Doesn't work on a dedicated server! The mod is disabled.")
 else
-    ExecuteWithDelay(10000, function()
-        ExecuteInGameThread(function()
-            LogInfo("Initializing hooks")
-            LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
-            if WaitForFish then
-                RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:ChooseNewDirection", ChooseNewDirectionHook)
-            else
-                RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
-            end
-            LogInfo("Hooks initialized")
-        end)
-    end)
-end
+    WaitForTheGameToBeFullyLoaded()
 
-if ToggleKey and type(ToggleKeyModifiers) == "table" and #ToggleKeyModifiers > 0 then
-    local function SetModState(Enable)
-        ExecuteInGameThread(function()
-            ModEnabled = Enable or false
-            local state = "Disabled"
-            local warningColor = AFUtils.CriticalityLevels.Red
-            if ModEnabled then
-                state = "Enabled"
-                warningColor = AFUtils.CriticalityLevels.Green
-            end
-            local stateMessage = "Instant Fishing: " .. state
-            LogInfo(stateMessage)
-            -- AFUtils.ModDisplayTextChatMessage(stateMessage)
-            AFUtils.ClientDisplayWarningMessage(stateMessage, warningColor)
+    ExecuteInGameThread(function()
+        LogInfo("Initializing hooks")
+        LoadAsset("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C")
+        if WaitForFish then
+            RegisterHook("/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:ChooseNewDirection", ChooseNewDirectionHook)
+        else
+            RegisterHook( "/Game/Blueprints/Items/Weapons/Guns/Weapon_FishingRod.Weapon_FishingRod_C:Start Fishing Minigame", StartFishingMinigameHook)
+        end
+        LogInfo("Hooks initialized")
+    end)
+
+    if ToggleKey and type(ToggleKeyModifiers) == "table" and #ToggleKeyModifiers > 0 then
+        local function SetModState(Enable)
+            ExecuteInGameThread(function()
+                ModEnabled = Enable or false
+                local state = "Disabled"
+                local warningColor = AFUtils.CriticalityLevels.Red
+                if ModEnabled then
+                    state = "Enabled"
+                    warningColor = AFUtils.CriticalityLevels.Green
+                end
+                local stateMessage = "Instant Fishing: " .. state
+                LogInfo(stateMessage)
+                -- AFUtils.ModDisplayTextChatMessage(stateMessage)
+                AFUtils.ClientDisplayWarningMessage(stateMessage, warningColor)
+            end)
+        end
+    
+        RegisterKeyBind(ToggleKey, ToggleKeyModifiers, function()
+            SetModState(not ModEnabled)
         end)
     end
-
-    RegisterKeyBind(ToggleKey, ToggleKeyModifiers, function()
-        SetModState(not ModEnabled)
-    end)
 end
 
 LogInfo("Mod loaded successfully")

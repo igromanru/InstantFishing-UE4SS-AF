@@ -57,7 +57,7 @@ local function FinishFishing()
             ExecuteInGameThread(function()
                 local fishingRod = AFUtils.GetCurrentFishingRod()
                 if fishingRod then
-                    if not InfiniteBait then
+                    if InfiniteBait == false then
                         fishingRod:Request_TriggerBaitUsage()
                     end
                     fishingRod:FishingSuccess()

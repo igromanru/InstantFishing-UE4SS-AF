@@ -7,7 +7,7 @@
 ---------- Configurations ----------
 -- Enable mod from the start
 ModEnabled = true
--- Set to `true` to disable the bait usage
+-- Set to `true` to disable the bait usage (Doesn't work with `WaitForFish` enabled)
 InfiniteBait = false
 -- Set delay in milliseconds (1 sec = 1000 milliseconds)
 PullingOutDelay = 0
